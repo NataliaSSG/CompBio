@@ -1,0 +1,511 @@
+---
+title: "Evidencia 2"
+author: "Natalia Salgado A01571008"
+date: "2022-10-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Parte 1: Investigación
+
+### Link para el video: https://youtu.be/YoLamCPiQq4
+
+### 1. ¿Cuáles son los virus “similares” a SARS-CoV-2 en el mundo? Obtén tus referencias de PUBMED.
+La familia Coronaviridae se divide en dos subfamilias: Coronavirinae y Torovirinae. La subfamilia Coronavirinae se divide en cuatro géneros: Alfacoronavirus, Betacoronavirus, Gammacoronavirus y Deltacoronavirus. En general, existen 7 tipos de coronavirus humanos, dos de los cuales pertenecen al género de Alfacoronavirus y son:
+  
+  - HCoV-229E
+   
+  - HCoV-NL63
+  
+Los otros 5 virus pertenecen al género Betacoronavirus, el cual se divide en 5 subgéneros: Embecovirus, Sarbecovirus, Merbecovirus, Nobecovirus e Hibecovirus. En el subgénero Embecovirus se encuentran:
+  
+  - HCoV-HKU1
+ 
+  - HCoV-OC43
+  
+Así mismo, en el subgénero Sarbecovirus se encuentran:
+  
+  - SARS-CoV
+  
+  - SARS-CoV-2
+  
+Y por último, en el subgénero Merbecovirus se encuentra:
+  
+  - MERS-CoV
+  
+Como se ve, al todos pertenecer a la subfamilia Coronavirinae, se puede considerar que los otros 6 coronavirus humanos son similares al SARS-CoV-2, con el SARS-CoV siendo el más similar debido a su pertenencia al mismo subgénero (Kirtipal, Bharadwaj, & Kang, 2020). 
+
+
+### 2. ¿Cuáles son los coronavirus reportados en otras especies que pueden ser cercanos al genoma de SARS-CoV-2? Incluye de qué especies son y menciona las referencias de los artículos consultados en PUBMED.
+Algunos coronavirus reportados en otras especies que pueden ser cercanos al genoma del SARS-CoV-2 son:
+
+- Canine coronavirus, que pertenece al género Alfacoronavirus y, como su nombre lo indica, es un coronavirus de perros (Haake et al., 2020)
+
+- Feline coronavirus (del cual existen tipo I y tipo II), que pertenece al género Alfacoronavirus y es de gatos (Shiba et al., 2007)
+
+- Porcine respiratory coronavirus, que pertenece al género Alfacoronavirus y es de cerdos (Keep et al., 2022)
+
+- Murine coronavirus (también conocido como virus de la hepatitis del ratón), que pertenece al género Betacoronavirus y es de ratones (Grabherr, Ludewig, & Pikor, 2021)
+
+- Bat coronavirus HKU4, que pertenece al género Betacoronavirus y es de murciélagos (Woo et al., 2009) 
+
+- Hedgehog coronavirus 1, que pertenece al género Betacoronavirus y es de erizos (Corman et al., 2014)
+
+- Bovine coronavirus, que pertenece al género Betacoronavirus y es de ganado, lo que incluye las especies bos taurus y bubalus bubali (Haake et al., 2020)
+
+- Bulbul coronavirus HKU11, que pertenece al género Deltacoronavirus y es de la espcie bulbul, la cual es un tipo de ave (Woo et al., 2009)
+
+- Beluga whale coronavirus SW1, que pertenece al género Gammacoronavirus y es de las ballenas beluga (Woo et al., 2009)
+
+- Infectous bronchitis virus, que pertenece al género Gammacoronavirus y es de gallinas (Bhuiyan et al., 2021)
+
+Como se observa, todos estos virus se originaron en distintas especias y todos pertenecen a la subfamilia Coronavirinae, indicando que debe haber cierta similitud en su genoma. Por deducción, los betacoronavirus deben tener aún más similitudes con el SARS-CoV-2 ya que éste también es un betacoronavirus (Sharun et al., 2020).
+
+
+### 3. En relación con la situación actual reflexiona, ¿qué propondrías que se deba hacer durante la contingencia del SARS-CoV-2 en comunidades de bajos recursos? Si tú vivieras en una situación de escasos recursos, ¿qué harías? Justifica tu respuesta.
+Para ayudar a comunidades de bajos recursos, recomendaría que se crearan campañas donde se divulgue información verídica y entendible sobre el SARS-CoV-2 ya sea a través de panfletos físicos o incluso con infografías digitales de libre y fácil acceso, esto para procurar que se sepa sobre los impactos que podría tener el virus en los individuos y en las comunidades y para que no se tome a la ligera. No solo eso, sino que también sería buena idea que recibieran donaciones de materiales importantes para higiene y la prevención de contagios, como cubrebocas y gel antibacterial, así como de comida u otros cosas necesarias en cada vivienda, con el fin de que se disminuya la necesidad de salir del hogar y que se cuente con los materiales para evitar ser infectado en caso de requerirse.
+
+Si yo viviera en una situación de escasos recursos, dependiendo de la gravedad de mi situación, en la época de cuarentena hubiera intentado salir lo menos posible para evitar exponerme al virus. No obstante, esto podría ser muy complicado de cumplir si tuviera la necesidad de trabajar o utilizar transporte público. En caso de que tuviera acceso a un dispositivo electrónico e intertnet, intentaría informarme sobre el virus como método preventivo, o me intentaría mantener al tanto de las noticias. Así mismo, buscaría adquirir materiales para higiene económicos para mantener un ambiente limpio. Sin embargo, creo que lo que hay que admitir es que no existe una manera sencilla de salir adelante en una pandemia como una persona de escasos recursos, pues sin acceso a tecnología e internet de calidad, es básicamente una necesidad exponerse al virus para trabajar, transportarse, hacer el mandado, etc. Adicionalmente, los materiales para higiene personal muchas veces pueden ser un lujo que no todos pueden permitirse. Estar conscientes de que la situación no es nada fácil para una gran parte de nuestro país y del mundo es indispensable para entender que es injusto lo mucho que la clase socioeconómica de una persona puede impactar sus probabilidades de sufrir a causa de enfermedades.
+
+
+## Parte 2: Análisis de variantes de SARS-CoV-2 en diferentes países
+
+### Librerías
+```{r}
+library(ape)
+library(phytools)
+library(Biostrings)
+library(seqinr)
+library(adegenet)
+library(ggtree)
+library(DECIPHER)
+library(viridis)
+library(ggplot2)
+```
+
+
+### Funciones
+
+#### Largo de la cadena
+```{r}
+cuentaNucleotidos = function(vectorDNA) {
+    largoDNA = length(vectorDNA)
+    cat("El tamaño de la cadena es:",largoDNA,"\n")
+    cat("\n")
+    return(largoDNA)
+} 
+```
+
+
+#### Porcentaje de bases
+```{r}
+porcentajeBases = function(vectorDNA) {
+  contA = 0
+  contT = 0
+  contC = 0
+  contG = 0
+  for (i in 1:length(vectorDNA)) {
+    if (vectorDNA[i] == "A") {
+      contA = contA + 1
+    }
+    if (vectorDNA[i] == "T") {
+      contT = contT + 1
+    }
+    if (vectorDNA[i] == "C") {
+      contC = contC + 1
+    }
+    if (vectorDNA[i] == "G") {
+      contG = contG + 1
+    }
+  }
+  porcentajeA = (contA/length(vectorDNA))*100
+  porcentajeT = (contT/length(vectorDNA))*100
+  porcentajeG = (contG/length(vectorDNA))*100
+  porcentajeC = (contC/length(vectorDNA))*100
+  cat("Porcentaje de adeninas:", porcentajeA,"%","\n")
+  cat("Porcentaje de timinas:", porcentajeT,"%","\n")
+  cat("Porcentaje de guaninas:", porcentajeG,"%","\n")
+  cat("Porcentaje de citosinas:", porcentajeC,"%","\n")
+  cat("\n")
+  vectorPorcentajeBases <- c(porcentajeA,porcentajeT,porcentajeG,porcentajeC)
+  return(vectorPorcentajeBases)
+}
+```
+
+
+### Análisis de variantes de SARS-CoV-2
+
+#### Estados Unidos
+```{r}
+USAsec <-read.GenBank("OP621045",
+                      as.character = TRUE)
+USAsec <- USAsec[[1]]
+USAsec <- toupper(USAsec)
+cuentaNucleotidos(USAsec)
+vecBasesUSA <- porcentajeBases(USAsec)
+```
+
+
+#### India
+```{r}
+IndiaSec <-read.GenBank("MZ960183",
+                      as.character = TRUE)
+IndiaSec <- IndiaSec[[1]]
+IndiaSec <- toupper(IndiaSec)
+cuentaNucleotidos(IndiaSec)
+vecBasesIndia <- porcentajeBases(IndiaSec)
+```
+
+
+#### Francia
+```{r}
+FranciaSec <-read.GenBank("OP646493",
+                      as.character = TRUE)
+FranciaSec <- FranciaSec[[1]]
+FranciaSec <- toupper(FranciaSec)
+cuentaNucleotidos(FranciaSec)
+vecBasesFrancia <- porcentajeBases(FranciaSec)
+```
+
+
+#### Alemania
+```{r}
+AlemaniaSec <-read.GenBank("OM462742",
+                      as.character = TRUE)
+AlemaniaSec <- AlemaniaSec[[1]]
+AlemaniaSec <- toupper(AlemaniaSec)
+cuentaNucleotidos(AlemaniaSec)
+vecBasesAlemania <- porcentajeBases(AlemaniaSec)
+```
+
+
+#### Brasil
+```{r}
+BrasilSec <-read.GenBank("OL984054",
+                      as.character = TRUE)
+BrasilSec <- BrasilSec[[1]]
+BrasilSec <- toupper(BrasilSec)
+cuentaNucleotidos(BrasilSec)
+vecBasesBrasil <- porcentajeBases(BrasilSec)
+```
+
+
+#### Corea del Sur
+```{r}
+SKsec <-read.GenBank("OP349649",
+                      as.character = TRUE)
+SKsec <- SKsec[[1]]
+SKsec <- toupper(SKsec)
+cuentaNucleotidos(SKsec)
+vecBasesSK <- porcentajeBases(SKsec)
+```
+
+
+#### Reino Unido
+```{r}
+UKsec <-read.GenBank("OK041127",
+                      as.character = TRUE)
+UKsec <- UKsec[[1]]
+UKsec <- toupper(UKsec)
+cuentaNucleotidos(UKsec)
+vecBasesUK <- porcentajeBases(UKsec)
+```
+
+
+#### Italia
+```{r}
+ItaliaSec <-read.GenBank("OL738656",
+                      as.character = TRUE)
+ItaliaSec <- ItaliaSec[[1]]
+ItaliaSec <- toupper(ItaliaSec)
+cuentaNucleotidos(ItaliaSec)
+vecBasesItalia <- porcentajeBases(ItaliaSec)
+```
+
+
+#### Japón
+```{r}
+JaponSec <-read.GenBank("ON999129",
+                      as.character = TRUE)
+JaponSec <- JaponSec[[1]]
+JaponSec <- toupper(JaponSec)
+cuentaNucleotidos(JaponSec)
+vecBasesJapon <- porcentajeBases(JaponSec)
+```
+
+
+#### Rusia
+```{r}
+RusiaSec <-read.GenBank("MZ047312",
+                      as.character = TRUE)
+RusiaSec <- RusiaSec[[1]]
+RusiaSec <- toupper(RusiaSec)
+cuentaNucleotidos(RusiaSec)
+vecBasesRusia <- porcentajeBases(RusiaSec)
+```
+
+
+#### Turquía
+```{r}
+TurquiaSec <-read.GenBank("ON653597",
+                      as.character = TRUE)
+TurquiaSec <- TurquiaSec[[1]]
+TurquiaSec <- toupper(TurquiaSec)
+cuentaNucleotidos(TurquiaSec)
+vecBasesTurquia <- porcentajeBases(TurquiaSec)
+```
+
+
+#### España
+```{r}
+EspanaSec <-read.GenBank("MW375726",
+                      as.character = TRUE)
+EspanaSec <- EspanaSec[[1]]
+EspanaSec <- toupper(EspanaSec)
+cuentaNucleotidos(EspanaSec)
+vecBasesEspana <- porcentajeBases(EspanaSec)
+```
+
+
+#### Vietnam
+```{r}
+VietnamSec <-read.GenBank("MT192772",
+                      as.character = TRUE)
+VietnamSec <- VietnamSec[[1]]
+VietnamSec <- toupper(VietnamSec)
+cuentaNucleotidos(VietnamSec)
+vecBasesVietnam <- porcentajeBases(VietnamSec)
+```
+
+
+#### Australia
+```{r}
+AustraliaSec <-read.GenBank("MZ410617",
+                      as.character = TRUE)
+AustraliaSec <- AustraliaSec[[1]]
+AustraliaSec <- toupper(AustraliaSec)
+cuentaNucleotidos(AustraliaSec)
+vecBasesAustralia <- porcentajeBases(AustraliaSec)
+```
+
+
+#### Países Bajos
+```{r}
+PaisesBajosSec <-read.GenBank("MW947280",
+                      as.character = TRUE)
+PaisesBajosSec <- PaisesBajosSec[[1]]
+PaisesBajosSec <- toupper(PaisesBajosSec)
+cuentaNucleotidos(PaisesBajosSec)
+vecBasesPaisesBajos <- porcentajeBases(PaisesBajosSec)
+```
+
+
+#### Irán
+```{r}
+IranSec <-read.GenBank("MZ314345",
+                      as.character = TRUE)
+IranSec <- IranSec[[1]]
+IranSec <- toupper(IranSec)
+cuentaNucleotidos(IranSec)
+vecBasesIran <- porcentajeBases(IranSec)
+```
+
+
+#### Taiwán
+```{r}
+TaiwanSec <-read.GenBank("MZ020652",
+                      as.character = TRUE)
+TaiwanSec <- TaiwanSec[[1]]
+TaiwanSec <- toupper(TaiwanSec)
+cuentaNucleotidos(TaiwanSec)
+vecBasesTaiwan <- porcentajeBases(TaiwanSec)
+```
+
+
+#### México
+```{r}
+MexicoSec <-read.GenBank("OL790171",
+                      as.character = TRUE)
+MexicoSec <- MexicoSec[[1]]
+MexicoSec <- toupper(MexicoSec)
+cuentaNucleotidos(MexicoSec)
+vecBasesMexico <- porcentajeBases(MexicoSec)
+```
+
+
+#### Polonia
+```{r}
+PoloniaSec <-read.GenBank("MZ047082",
+                      as.character = TRUE)
+PoloniaSec <- PoloniaSec[[1]]
+PoloniaSec <- toupper(PoloniaSec)
+cuentaNucleotidos(PoloniaSec)
+vecBasesPolonia <- porcentajeBases(PoloniaSec)
+```
+
+
+#### Portugal
+```{r}
+PortugalSec <-read.GenBank("MW556268",
+                      as.character = TRUE)
+PortugalSec <- PortugalSec[[1]]
+PortugalSec <- toupper(PortugalSec)
+cuentaNucleotidos(PortugalSec)
+vecBasesPortugal <- porcentajeBases(PortugalSec)
+```
+
+
+### Graficación de Bases
+```{r}
+library(ggplot2)
+library(gridExtra)
+require(gridExtra)
+
+vectorVariantes1 <- c(vecBasesUSA,vecBasesIndia,vecBasesFrancia,vecBasesAlemania,vecBasesBrasil,vecBasesSK,vecBasesUK,vecBasesItalia,vecBasesJapon,vecBasesRusia)
+
+data1 <- data.frame(x = vectorVariantes1,Bases = rep(c("USA","India","Francia","Alemania","Brasil","Corea Sur","Reino Unido","Italia","Japon","Rusia"),each = 4),Base = c("A","T","G","C"))
+
+plot1 <- ggplot(data1,aes(x = Bases,y = x,fill = Base)) + geom_bar(stat = "identity",position = "dodge") + theme_bw() + scale_fill_manual(values=c("pink","orchid2","purple","skyblue")) + labs(y= "Porcentaje", x = "Variantes") + labs(title = "Porcentaje de Bases en Variantes de SARS-CoV-2") + theme(plot.title = element_text(hjust = 0.5)) + coord_cartesian(ylim = c(15, 32))
+
+vectorVariantes2 <- c(vecBasesTurquia,vecBasesEspana,vecBasesVietnam,vecBasesAustralia,vecBasesPaisesBajos,vecBasesIran,vecBasesTaiwan,vecBasesMexico,vecBasesPolonia,vecBasesPortugal)
+
+data2 <- data.frame(x = vectorVariantes2,Bases = rep(c("Turquia","Espana","Vietnam","Australia","PB","Iran","Taiwan","Mexico","Polonia","Portugal"),each = 4),Base = c("A","T","G","C"))
+
+plot2 <- ggplot(data2,aes(x = Bases,y = x,fill = Base)) + geom_bar(stat = "identity",position = "dodge") + theme_bw() + scale_fill_manual(values=c("pink","orchid2","purple","skyblue")) + labs(y= "Porcentaje", x = "Variantes") + coord_cartesian(ylim = c(15, 32))
+
+
+grid.arrange(plot1,plot2, nrow=2)
+```
+
+### Árbol filogenético
+```{r}
+virusVector <- c("OP621045","MZ960183","OP646493","OM462742","OL984054","OP349649",  "OK041127","OL738656","ON999129","MZ047312","ON653597","MW375726","MT192772","MZ410617","MW947280","MZ314345","MZ020652","OL790171","MZ047082","MW556268")
+
+virusSecuencias <- read.GenBank(virusVector)
+```
+
+#### Estructura
+```{r}
+attributes(virusSecuencias)
+names(virusSecuencias)
+species <- attr(virusSecuencias, "species")
+nombresVirus <- species
+```
+
+```{r}
+nombresVirus[1] <- "USA/0-26520-3/2020"
+nombresVirus[2] <- "INDIA/ICMR-NIRTH-S2/2020"
+nombresVirus[3] <- "FRANCE/IHUCOVID-000662/2020"
+nombresVirus[4] <- "GERMANY/C881/2020"
+nombresVirus[5] <- "BRAZIL/SARS-CoV-2_IC01048platelet.2/2020"
+nombresVirus[6] <- "SOUTH KOREA/CSH-288/2020"
+nombresVirus[7] <- "UNITED KINGDOM/DMSOp13.5/2020"
+nombresVirus[8] <- "ITALY/230860-12-20/2020"
+nombresVirus[9] <- "JAPAN/HiroKH19c/2020"
+nombresVirus[10] <- "RUSSIA/-42/2020"
+nombresVirus[11] <- "TURKEY/Tur-P1/2020"
+nombresVirus[12] <- "SPAIN/AST-232017735/2020"
+nombresVirus[13] <- "VIETNAM/nCoV-19-01S/2020"
+nombresVirus[14] <- "AUSTRALIA/GC-251/2020"
+nombresVirus[15] <- "NETHERLANDS/Rotterdam-UK1/2020"
+nombresVirus[16] <- "IRAN/3533/2020"
+nombresVirus[17] <- "TAIWAN/CGMH-CGU-44/2020"
+nombresVirus[18] <- "MEXICO/J250/2020"
+nombresVirus[19] <- "POLAND/IHG_PAS_25_P7908/2020"
+nombresVirus[20] <- "PORTUGAL/P12/2020"
+```
+
+```{r}
+write.dna(virusSecuencias,  file ="virusSecuencias.fasta", format = "fasta", append =
+FALSE, nbcol = 6, colsep = " ", colw = 10)
+```
+
+```{r}
+virusSecuenciasNoAlineadas <- readDNAStringSet("virusSecuencias.fasta", format = "fasta")
+virusSecuenciasNoAlineadas <- OrientNucleotides(virusSecuenciasNoAlineadas)
+virusAlinearSecuencias <- AlignSeqs(virusSecuenciasNoAlineadas)
+```
+
+```{r}
+writeXStringSet(virusAlinearSecuencias, file = "virusSecuencias.fasta")
+```
+
+```{r}
+virusAlineado <- read.alignment("virusSecuencias.fasta", format = "fasta") 
+```
+
+```{r}
+matrizDistancia <- dist.alignment(virusAlineado, matrix = "similarity")
+```
+
+```{r}
+temp <- as.data.frame(as.matrix(matrizDistancia))
+table.paint(temp, cleg=0, clabel.row=.5, clabel.col=.5) + scale_color_viridis()
+```
+
+```{r}
+virusFilogenetico <- nj(matrizDistancia)
+virusFilogenetico$tip.label <- nombresVirus
+```
+
+```{r}
+virusPlotFilogenetico <- ladderize(virusFilogenetico)
+```
+
+```{r}
+ggtree(virusPlotFilogenetico) + labs(title ="SARS-CoV-2 en 2020") + theme(plot.title = element_text(hjust = 0.5)) + ggplot2::xlim(0, 0.038) + theme(plot.title = element_text(face="bold")) + geom_tiplab()
+```
+
+### Interpretación de gráficas y conclusiones
+En este caso, se decidió trabajar con variantes en los 20 países con más casos reportados. Para obtener resultados más acordes con la realidad, las secuencias que se seleccionaron todas fueron coleccionadas en el año 2020 y todas incluyen el genoma completo del virus. Así mismo, ninguna cuenta con caracteres ambiguos. 
+
+Para empezar, en cuanto a la gráfica de bases, todas las variantes parecen tener la misma proporción de bases, ya que se nota el mismo patrón para las 20 variantes. Esto quiere decir que, de acuerdo con la información que se presenta, no parece haber mucha variación en este sentido. Incluso si se analiza de forma numérica a partir de los vectores de bases creados para cada variante, se observa que los porcentajes de bases varían máximo 0.2%. Viéndolo de otra forma, si se tomara 30,000 como el valor promedio de las secuencias (valor hipotético), se tendría que el 0.2% representa 60 bases. En este caso, las secuencias nunca superan las 30,000 bases, por lo cual una variación del 0.2% sería incluso menor a 60 bases. Adicionalmente, se observa que, al redondear el porcentaje al primer decimal, la mayoría de las variantes presentan los mismos porcentajes. Con esto se ve que la variación de número de bases entre las variantes de los 20 países es existente, pero muy poca, lo cual es bastante lógico considerando que, al fin y al cabo, se trata del mismo virus, y lo único que debería estar afectando el número de bases en los genomas sería una relativamente pequeña cantidad de mutaciones.
+
+Ahora, en cuanto al árbol filogenético, en realidad no se notan patrones geográficos a partir de la información presentada, pues como se logra ver, existe gran similitud entre las variantes de Rusia y Australia, Francia y Corea del Sur, Portugal y Brasil, y España y Turquía; sin embargo, estos países no son territorios cercanos y ni siquiera pertenecen a los mismos continentes. Si bien Polonia y los Países Bajos sí son naciones cercanas y sus variantes sí muestran más similitud, es raro que la variante de Alemania no sea tan parecida, lo que parece indicar que es meramente coincidencia. No obstante, si se toma en consideración el artículo escrito por Justo Arevalo et al. (2021), en éste se concluye a partir del análisis de 171,461 genomas del SARS-CoV-2, que existen haplotipos que son más comunes en ciertos continentes. Por ejemplo, se hace mención de un haplotipo caracterizado por una mutación en T85I en nsp2, el cual fue el más frecuente en Norteamérica. Entonces, el hecho de que el árbol filogénetico no haya mostrado similitudes debido a la geografía puede significar dos cosas. Primero que nada, es posible que la cercanía entre variantes de países lejanos simplemente se deba a la globalización, ya que viajar entre países es extremadamente común hoy en día y solamente significa que es más fácil transmitir un virus o una variante de un continente a otro en tiempos muy cortos. Por otra parte, se puede deber a que solamente se analizaron 20 secuencias de 20 países, las cuales pudieron haber sido poco representativas de sus respectivos países. 
+
+A pesar de que se haya intentado seleccionar secuencias del mismo año, aún así no se encontró nada que indicara que existen similitudes entre las variantes del SARS-CoV-2 dentro de las poblaciones asiáticas, hispanas o europeas. Sin embargo, este análisis por sí solo, por su cantidad limitada de información, es insuficiente para llegar a una conclusión concreta. Para esto, como en el artículo mencionado, se tendría que hacer un estudio con una cantidad mucho mayor de genomas del virus.
+
+
+## Referencias
+Auguie, B. (2017). gridExtra: Miscellaneous Functions for "Grid" Graphics. R package version 2.3, https://CRAN.R-project.org/package=gridExtra
+  
+Bhuiyan, M., Amin, Z., Rodrigues, K. F., Saallah, S., Shaarani, S. M., Sarker, S., & Siddiquee, S. (2021). Infectious Bronchitis Virus (Gammacoronavirus) in Poultry Farming: Vaccination, Immune Response and Measures for Mitigation. Veterinary sciences, 8(11), 273. https://doi.org/10.3390/vetsci8110273
+
+Charif, D. & Lobry, J.R. seqinr. (2007).
+
+Corman, V. M., Kallies, R., Philipps, H., Göpner, G., Müller, M. A., Eckerle, I., Brünink, S., Drosten, C., & Drexler, J. F. (2014). Characterization of a novel betacoronavirus related to middle East respiratory syndrome coronavirus in European hedgehogs. Journal of virology, 88(1), 717–724. https://doi.org/10.1128/JVI.01600-13
+
+Garnier, S., Ross, N., Rudis, R., Camargo, A.P., Sciaini, M., & Scherer, C. (2021). Rvision - Colorblind-Friendly Color Maps for R. R package version 0.6.2.
+
+Grabherr, S., Ludewig, B., & Pikor, N. B. (2021). Insights into coronavirus immunity taught by the murine coronavirus. European journal of immunology, 51(5), 1062–1070. https://doi.org/10.1002/eji.202048984
+
+Guangchuang, Y. (2022). Data Integration, Manipulation and Visualization of Phylogenetic Trees. (1st edition). Chapman and Hall/CRC.
+
+Haake, C., Cook, S., Pusterla, N., & Murphy, B. (2020). Coronavirus Infections in Companion Animals: Virology, Epidemiology, Clinical and Pathologic Features. Viruses, 12(9), 1023. https://doi.org/10.3390/v12091023
+
+H, Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
+
+Jombart, T. (2008) adegenet: a R package for the multivariate analysis of genetic markers. Bioinformatics 24: 1403-1405. doi: 10.1093/bioinformatics/btn129
+
+Justo Arevalo, S., Zapata Sifuentes, D., Huallpa, C. J., Landa Bianchi, G., Castillo Chávez, A., Garavito-Salini Casas, R., Uceda-Campos, G., & Pineda Chavarria, R. (2021). Global Geographic and Temporal Analysis of SARS-CoV-2 Haplotypes Normalized by COVID-19 Cases During the Pandemic. Frontiers in Microbiology, 12(February). https://doi.org/10.3389/fmicb.2021.612432
+
+Keep, S., Carr, B. V., Lean, F., Fones, A., Newman, J., Dowgier, G., Freimanis, G., Vatzia, E., Polo, N., Everest, H., Webb, I., Mcnee, A., Paudyal, B., Thakur, N., Nunez, A., MacLoughlin, R., Maier, H., Hammond, J., Bailey, D., Waters, R., … Tchilian, E. (2022). Porcine Respiratory Coronavirus as a Model for Acute Respiratory Coronavirus Disease. Frontiers in immunology, 13, 867707. https://doi.org/10.3389/fimmu.2022.867707
+
+Kirtipal, N., Bharadwaj, S., & Kang, S. G. (2020). From SARS to SARS-CoV-2, insights on structure, pathogenicity and immunity aspects of pandemic human coronaviruses. Infection, genetics and evolution : journal of molecular epidemiology and evolutionary genetics in infectious diseases, 85, 104502. https://doi.org/10.1016/j.meegid.2020.104502
+
+Pagès, H., Aboyoun, P., Gentleman, R., DebRoy, S. (2022). Biostrings: Efficient manipulation of biological strings. R package version 2.64.1, https://bioconductor.org/packages/Biostrings
+
+Paradis, E. & Schliep, K. 2019. ape 5.0: an environment for modern phylogenetics and evolutionary analyses in R. Bioinformatics 35: 526-528.
+
+Revell, L. J. (2012) phytools: An R package for phylogenetic comparative biology (and other things). Methods Ecol. Evol. 3 217-223. doi:10.1111/j.2041-210X.2011.00169.x
+  
+Sharun, K., Sircar, S., Malik, Y. S., Singh, R. K., & Dhama, K. (2020). How close is SARS-CoV-2 to canine and feline coronaviruses?. The Journal of small animal practice, 61(8), 523–526. https://doi.org/10.1111/jsap.13207
+
+Shiba, N., Maeda, K., Kato, H., Mochizuki, M., & Iwata, H. (2007). Differentiation of feline coronavirus type I and II infections by virus neutralization test. Veterinary microbiology, 124(3-4), 348–352. https://doi.org/10.1016/j.vetmic.2007.04.031
+
+Woo, P. C., Lau, S. K., Huang, Y., & Yuen, K. Y. (2009). Coronavirus diversity, phylogeny and interspecies jumping. Experimental biology and medicine (Maywood, N.J.), 234(10), 1117–1127. https://doi.org/10.3181/0903-MR-94
+
+Wright, E.S. (2016). “Using DECIPHER v2.0 to Analyze Big Biological Sequence Data in R.” The R Journal, 8(1), 352-359.

@@ -1,0 +1,313 @@
+---
+title: "Evidencia 1"
+author: "Natalia Sofía Salgado García A01571008"
+date: "2022-10-12"
+output:
+html_document: default
+word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Parte 1
+### 1. ¿Cuál es la situación actual de COVID-19 a nivel mundial, en México, en tu estado de origen y en tu municipio, alcaldía o colonia?
+  De acuerdo con la página de Johns Hopkins, han habido alrededor de 621,953,948 casos confirmados de Covid-19 y aproximadamente 6,558,616 muertes debido a este virus. Hoy en día, 13,663,361 pacientes se encuentran infectados. De ellos, el 0.3% se encuentra en condición seria (Worldometer, 2022). Hablando sobre México, han habido 7,097,264 casos confirmados y 330,208 muertes debido al virus. Así mismo, el 75.2% de la población ha recibido al menos una dosis de la vacuna. En la última semana, se registraron 6,299 casos nuevos y 69 muertes (Johns Hopkins, 2022). 
+	En mi estado de origen, Nuevo León, según la Secretaría de Salud, hasta el 9 de octubre de 2022, han habido un total de 622,687 casos de coronavirus. Adicionalmente, han habido 16,615 defunciones. Actualmente, según la CONACYT (2022), hay 282 casos activos. Sobre Monterrey, de acuerdo con la CONACYT (2022), el acumulado de casos es de 112,484 y han habido 5,085 defunciones. El día de hoy (10 de octubre), hay 86 casos activos. 
+
+### 2. ¿Cuál fue la primera variante del virus que se propagó a todo el mundo?
+  Como se sabe, el SARS-CoV-2 se identificó por primera vez en Wuhan, China. De ahí, éste se esparció globalmente. Esta cepa es conocida como Wuhan-Hu-1 y cuenta con una cadena de 29,903 nucleótidos (Pavan et al., 2022).
+
+### 3. ¿Cuáles son las otras variantes del virus que existen en otras regiones del mundo?
+  Durante la pandemia, aparecieron una gran cantidad de variantes del SARS-CoV-2. A continuación algunas de ellas junto con sus lugares de origen:
+
+-Variante Alpha (linajes B.1.1.7 y Q) que se documentó por primera vez en el Reino Unido en septiembre del 2020. Ésta fue la primera variante de preocupación (Duong, 2021).
+
+-Variante Epsilon (linajes B.1.427 y B.1.429) que se documentó por primera vez en Estados Unidos en septiembre del 2020 (ECDC, 2022).
+
+-Variant Beta (linaje B.1.351) que se documentó por primera vez en Sudáfrica en mayo del 2020 (Duong, 2021).
+
+-Variante Delta (linajes B.1.617.2 y AY) que se documentó por primera vez en India en mayo del 2020 (Duong, 2021).
+
+-Variante Gamma (linaje P.1) que se documentó por primera vez en Brasil en noviembre del 2020 (Duong, 2021).
+
+-Variante Eta (linaje B.1.525) que se documentó por primera vez en Nigeria en diciembre del 2020 (ECDC, 2022).
+
+-Variante Kappa (linaje B.1.617.1) que se documentó por primera vez en India en diciembre del 2020 (ECDC, 2022).
+
+-Variante Lambda (linaje C.37) que se documentó por primera vez en Perú en diciembre del 2020 (ECDC, 2022).
+
+-Variante Theta (linaje P.3) que se documentó por primera vez en enero del 2021 en Filipinas (ECDC, 2022).
+
+-Variante Omicron (linajes B.1.1.529, BA.1, BA.2, BA.3, BA.4, BA.5) que se documentó en varios países incluyendo Sudáfrica e India desde noviembre del 2021 (ECDC, 2022).
+
+### 4. ¿Cómo buscarías información de la variante del virus en tu país? 
+  Para encontrar información sobre las variantes en mi país, lo que haría es ingresar a la página de Variants Overview de NCBI y vería el conteo de linajes de México en el mapa que muestran. Para encontrar una variante específica en México, usaría la base de datos NCBI Virus y pondría “México” en el espacio de ubicación geográfica para delimitar la búsqueda a mi país. Adicionalmente, para obtener más información además de la secuencia, lo que haría sería utilizar otras bases de datos de artículos científicos como PubMed y en el buscador pondría "Nombre de la variante" AND "Mexico" para encontrar artículos específicos.
+
+### 5. Imagina que te encuentras en una situación similar a la de Li Wenliang, médico chino que intentó alertar sobre el brote de coronavirus en su país, pero fue detenido por las autoridades y obligado a retractarse, ¿qué harías en su caso? Selecciona un inciso: a) Lo reportas al centro de investigación o la universidad. b) Lo reportas a la prensa. c) Guardas la información. Elige y justifica tu respuesta. 
+  Si me encontrara en una situación similar a la de Li Wenliang, probablemente lo que haría sería reportarlo a la prensa, puesto que es la manera más rápida de que la gente se entere del problema, y aunque piensen que es fake news o algo por el estilo, aún así se traería atención al problema. Podría también reportarlo a un centro de investigación, pero esto probablemente causaría que la información tome más tiempo en llegar al público, mientras que si se reporta a la prensa y esto impacta al público, es probable que la situación sea revisada por centros de investigación de todos modos. Por estas razones, intentaría reportarlo a un medio de comunicación, quizás uno creíble e independiente del estado si es que reconozco que las fuentes de información en mi país controladas por el gobierno están muy sesgadas. En todo caso, jamás guardaría la información ya que, si se sabe algo que podría tener un gran impacto negativo globalmente, entonces se vuelve un deber moral compartir dicha información para que la gravedad de la situación se pueda mitigar. Si las autoridades no hubieran obligado a Li Wenliang a retractarse, muy posiblemente se hubieran podido haber evitado una cantidad considerable de muertes.
+
+## Parte 2
+
+### Definición de funciones
+
+#### Largo de la cadena
+```{r}
+cuentaNucleotidos = function(vectorDNA) {
+    largoDNA = length(vectorDNA)
+    cat("El tamaño de la cadena es:",largoDNA,"\n")
+    cat("\n")
+    return(largoDNA)
+} 
+```
+
+#### Porcentaje de bases
+```{r}
+porcentajeBases = function(vectorDNA) {
+  contA = 0
+  contT = 0
+  contC = 0
+  contG = 0
+  for (i in 1:length(vectorDNA)) {
+    if (vectorDNA[i] == "A") {
+      contA = contA + 1
+    }
+    if (vectorDNA[i] == "T") {
+      contT = contT + 1
+    }
+    if (vectorDNA[i] == "C") {
+      contC = contC + 1
+    }
+    if (vectorDNA[i] == "G") {
+      contG = contG + 1
+    }
+  }
+  porcentajeA = (contA/length(vectorDNA))*100
+  porcentajeT = (contT/length(vectorDNA))*100
+  porcentajeG = (contG/length(vectorDNA))*100
+  porcentajeC = (contC/length(vectorDNA))*100
+  cat("Porcentaje de adeninas:", porcentajeA,"%","\n")
+  cat("Porcentaje de timinas:", porcentajeT,"%","\n")
+  cat("Porcentaje de guaninas:", porcentajeG,"%","\n")
+  cat("Porcentaje de citosinas:", porcentajeC,"%","\n")
+  cat("\n")
+  vectorPorcentajeBases <- c(porcentajeA,porcentajeT,porcentajeG,porcentajeC)
+  return(vectorPorcentajeBases)
+}
+```
+
+#### Contenido GC
+```{r}
+contenidoGC = function(vectorDNA) {
+  contC = 0
+  contG = 0
+  for (i in 1:length(vectorDNA)) {
+    if (vectorDNA[i] == "C") {
+      contC = contC + 1
+    }
+    if (vectorDNA[i] == "G") {
+      contG = contG + 1
+    }
+  }
+  porcentajeC = (contC/length(vectorDNA))*100
+  porcentajeG = (contG/length(vectorDNA))*100
+  cat("Contenido GC:", porcentajeC+porcentajeG,"%","\n")
+  cat("\n")
+  return(porcentajeC+porcentajeG)
+}
+```
+
+#### Secuencias contrasentido
+```{r}
+funcHebraInversa = function(vectorHebraDirecta) {
+  hebraInversa = rev(vectorHebraDirecta)
+  hebraInicio = c(hebraInversa[1],hebraInversa[2],hebraInversa[3],hebraInversa[4],hebraInversa[5],hebraInversa[6])
+  hebraFinal = c(hebraInversa[length(hebraInversa)-5],hebraInversa[length(hebraInversa)-4],hebraInversa[length(hebraInversa)-3],hebraInversa[length(hebraInversa)-2],hebraInversa[length(hebraInversa)-1],hebraInversa[length(hebraInversa)])
+  cat("La secuencia inversa es: '3-",hebraInicio,"...",hebraFinal,"-5'","\n")
+  return(hebraInversa)
+}
+```
+
+### Variantes
+
+#### Alpha B.1.1.7
+```{r}
+library(seqinr)
+varianteAlpha <- read.fasta("alpha.fasta")
+alpha <- varianteAlpha[[1]]
+alpha <- toupper(alpha)
+
+largoAlpha <- cuentaNucleotidos(alpha)
+alphaBases <- porcentajeBases(alpha)
+alphaGC <- contenidoGC(alpha)
+alphaInversa <- funcHebraInversa(alpha)
+
+```
+
+#### Epsilon B.1.427
+```{r}
+varianteEpsilon <- read.fasta("epsilon.fasta")
+epsilon <- varianteEpsilon[[1]]
+epsilon <- toupper(epsilon)
+
+largoEpsilon <- cuentaNucleotidos(epsilon)
+epsilonBases <- porcentajeBases(epsilon)
+epsilonGC <- contenidoGC(epsilon)
+epsilonInversa <- funcHebraInversa(epsilon)
+```
+
+#### Beta B.1.351
+```{r}
+varianteBeta <- read.fasta("beta2.fasta")
+beta <- varianteBeta[[1]]
+beta <- toupper(beta)
+
+largoBeta <- cuentaNucleotidos(beta)
+betaBases <- porcentajeBases(beta)
+betaGC <- contenidoGC(beta)
+betaInversa <- funcHebraInversa(beta)
+```
+
+#### Delta B.1.617.2
+```{r}
+varianteDelta <- read.fasta("delta.fasta")
+delta <- varianteDelta[[1]]
+delta <- toupper(delta)
+
+largoDelta <- cuentaNucleotidos(delta)
+deltaBases <- porcentajeBases(delta)
+deltaGC <- contenidoGC(delta)
+deltaInversa <- funcHebraInversa(delta)
+```
+
+#### Gamma P.1
+```{r}
+varianteGamma <- read.fasta("gamma2.fasta")
+gamma <- varianteGamma[[1]]
+gamma <- toupper(gamma)
+
+largoGamma <- cuentaNucleotidos(gamma)
+gammaBases <- porcentajeBases(gamma)
+gammaGC <- contenidoGC(gamma)
+gammaInversa <- funcHebraInversa(gamma)
+```
+
+#### Eta B.1.525
+```{r}
+varianteEta <- read.fasta("eta.fasta")
+eta <- varianteEta[[1]]
+eta <- toupper(eta)
+
+largoEta <- cuentaNucleotidos(eta)
+etaBases <- porcentajeBases(eta)
+etaGC <- contenidoGC(eta)
+etaInversa <- funcHebraInversa(eta)
+```
+
+#### Kappa B.1.617.1
+```{r}
+varianteKappa <- read.fasta("kappa.fasta")
+kappa <- varianteKappa[[1]]
+kappa <- toupper(kappa)
+
+largoKappa <- cuentaNucleotidos(kappa)
+kappaBases <- porcentajeBases(kappa)
+kappaGC <- contenidoGC(kappa)
+kappaInversa <- funcHebraInversa(kappa)
+```
+
+#### Lambda C.37
+```{r}
+varianteLambda <- read.fasta("lambda.fasta")
+lambda <- varianteLambda[[1]]
+lambda <- toupper(lambda)
+
+largoLambda <- cuentaNucleotidos(lambda)
+lambdaBases <- porcentajeBases(lambda)
+lambdaGC <- contenidoGC(lambda)
+lambdaInversa <- funcHebraInversa(lambda)
+```
+
+#### Theta P.3
+```{r}
+varianteTheta <- read.fasta("theta.fasta")
+theta <- varianteTheta[[1]]
+theta <- toupper(theta)
+
+largoTheta <- cuentaNucleotidos(theta)
+thetaBases <- porcentajeBases(theta)
+thetaGC <- contenidoGC(theta)
+thetaInversa <- funcHebraInversa(theta)
+```
+
+#### Omicron BA.2
+```{r}
+varianteOmicron <- read.fasta("omicron.fasta")
+omicron <- varianteOmicron[[1]]
+omicron <- toupper(omicron)
+
+largoOmicron <- cuentaNucleotidos(omicron)
+omicronBases <- porcentajeBases(omicron)
+omicronGC <- contenidoGC(omicron)
+omicronInversa <- funcHebraInversa(omicron)
+```
+
+
+### Graficación
+
+#### Contenido GC
+```{r}
+vectorGC <- c(alphaGC,epsilonGC,betaGC,deltaGC,gammaGC,etaGC,kappaGC,lambdaGC,thetaGC,omicronGC)
+barplot(vectorGC, main = "Contenido GC de diferentes variantes de SARS-CoV-2",ylab = "Porcentaje de contenido GC",names.arg = c("Alpha","Epsilon","Beta","Delta","Gamma","Eta","Kappa","Lambda","Theta","Omicron"), col = c("seashell","mistyrose","plum"),ylim = c(37.5,38.2),las=2)
+
+```
+
+Interpretación de las gráfica de Contenido GC:
+
+  Como se observa en la gráfica, los contenidos GC de las distintas variantes son algo diferentes pero en realidad no son tan variables, pues se mantienen en un rango de 37.8% a 38%, con el más bajo siendo el de la variante Omicron BA.2 y el más alto siendo el de la variante Beta B.1.351. Hablando generalmente, el contenido GC del SARS-CoV-2 no parece ser muy alto, lo que puede indicar que su estructura no es relativamente muy estable (Price, Garhyan, & Gibas, 2017).
+  La gráfica por sí sola no es suficiente para la creación de hipótesis relevantes, pues si se toma en consideración la información que se tiene, como región donde la variante fue documentada por primera vez así como su contenido GC, no se aprecian correlaciones, ya que tanto la variante Beta B.1.351 como la variante Omicron BA.2 fueron documentadas por primera vez en Sudáfrica y ambas se encuentran en extremos opuestos en cuanto a su contenido GC presentado, y aunque se podría pensar que el virus desarrollaría un contenido GC más alto para regiones con temperaturas más altas, no se observa esto. No obstante, habría que estudiar una mayor cantidad de información para determinar los factores que podrían mostrar cierta correlación con el contenido GC.
+
+
+#### Bases
+```{r}
+vectorVariantes1 <- c(alphaBases,epsilonBases,betaBases,deltaBases,gammaBases)
+library(ggplot2)
+
+data1 <- data.frame(x = vectorVariantes1,Bases = rep(c("Alpha B.1.1.7","Epsilon B.1.427","Beta B.1.351","Delta B.1.617.2","Gamma P.1"),each = 4),Base = c("A","T","G","C"))
+
+plot1 <- ggplot(data1,aes(x = Bases,y = x,fill = Base)) + geom_bar(stat = "identity",position = "dodge") + theme_bw() + scale_fill_manual(values=c("pink","orchid2","purple","skyblue")) + labs(y= "Porcentaje", x = "Variantes") + labs(title = "Porcentaje de Bases en Variantes de SARS-CoV-2") + theme(plot.title = element_text(hjust = 0.5)) + coord_cartesian(ylim = c(15, 32))
+
+vectorVariantes2 <- c(etaBases,kappaBases,lambdaBases,thetaBases,omicronBases)
+data2 <- data.frame(x = vectorVariantes2,Bases = rep(c("Eta B.1.525","Kappa B.1.617.1","Lambda C.37","Theta P.3","Omicron BA.2"),each = 4),Base = c("A","T","G","C"))
+
+plot2 <- ggplot(data2,aes(x = Bases,y = x,fill = Base)) + geom_bar(stat = "identity",position = "dodge") + theme_bw() + scale_fill_manual(values=c("pink","orchid2","purple","skyblue")) + labs(y= "Porcentaje", x = "Variantes") + coord_cartesian(ylim = c(15, 32)) 
+
+library(gridExtra)
+require(gridExtra)
+grid.arrange(plot1, plot2, nrow=2)
+
+```
+
+Interpretación de las gráfica de Porcentaje de Bases:
+
+  Como se supondría a partir de la gráfica de contenido GC, la proporción de adeninas y timinas en las variantes es mucho mayor que la proporción de guaninas y citosinas. Así mismo, al igual que en la gráfica previamente mencionada, el porcentaje de las bases de las diferentes variantes tampoco es muy variable y de hecho parece permanecer bastante constante; sin embargo, sí existen variaciones, aunque de magnitud muy pequeña. Si se analiza la gráfica con determinación, se observa que las variantes Epsilon B.1.427 y Theta P.3 son aquellas que cuentan con una mayor cantidad de adeninas, pues la barra color rosa claro cae justamente sobre la línea de la cuadrícula. Hablando sobre las timinas, la variante Omicron BA.2 es la que presenta una mayor proporción de éstas en su secuencia, ya que se nota, por más leve que sea, un espacio menor entre la barra azul y la línea de la cuadrícula. En cuanto a las guaninas, las variantes Alpha B.1.1.7 y Beta B.1.351 son las que contienen una mayor cantidad de esta base. Por último, aunque no se aprecie con exactitud en la gráfica, númericamente se conoce que la variante Kappa B.1.617.1 presenta una mayor proporción de citosinas.
+  
+
+## Referencias
+
+Duong D. (2021). Alpha, Beta, Delta, Gamma: What's important to know about SARS-CoV-2 variants of concern?. CMAJ: Canadian Medical Association journal = journal de l'Association medicale canadienne, 193(27), E1059–E1060. https://doi.org/10.1503/cmaj.1095949
+
+European Center for Disease Prevention and Control. (2022). SARS-CoV-2 variants of concern as of 6 october 2022. Recuperada el 2022, de https://www.ecdc.europa.eu/en/covid-19/variants-concern
+
+Gobierno de México. (2022). Covid-19 México. Recuperada el 2022, de https://datos.covid-19.conacyt.mx/
+
+Johns Hopkins. (2022). Coronavirus Resource Center. Recuperada el 2022, de  https://coronavirus.jhu.edu/region/mexico
+
+NL.gob.mx. (2022). Cifras COVID-19 en Nuevo León. https://www.nl.gob.mx/publicaciones/cifras-covid-19-en-nuevo-leon
+
+Pavan, M., Bassani, D., Sturlese, M., & Moro, S. (2022). From the Wuhan-Hu-1 strain to the XD and XE variants: is targeting the SARS-CoV-2 spike protein still a pharmaceutically relevant option against COVID-19?. Journal of enzyme inhibition and medicinal chemistry, 37(1), 1704–1714. https://doi.org/10.1080/14756366.2022.2081847
+
+Price, A., Garhyan, J., & Gibas, C. (2017). The impact of RNA secondary structure on read start locations on the Illumina sequencing platform. PloS one, 12(2), e0173023. https://doi.org/10.1371/journal.pone.0173023
+
+Worldometer. (2022). Coronavirus. Recuperada el 2022, de https://www.worldometers.info/coronavirus/
